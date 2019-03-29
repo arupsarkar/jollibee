@@ -4,15 +4,6 @@ import Header from 'components/Header';
 import MenuRow from 'components/MenuRow';
 import JollibeeImage from 'images/Jollibee.png';
 
-import {
-    createStackNavigator,
-    createAppContainer
-} from 'react-navigation';
-
-import MenuList from 'components/MenuList'
-import MenuReview from 'components/MenuReview'
-import OrderCart from 'components/OrderCart'
-
 const menu = [
     {name: 'Chickenjoy - 10-pc & 6-pc Chickenjoy Bucket', description: '10-pc & 6-pc Chickenjoy Bucket', price: 14.44, image: 'https://jollibeeusa.com/wp-content/uploads/2019/03/lgchickjoy.png', rating: 4},
     {name: 'Chickenjoy - 2-pc Chickenjoy W/ 1 Side', description: '2-pc Chickenjoy W/ 1 Side', price: 10.99, image: 'https://jollibeeusa.com/wp-content/uploads/2018/11/2pc1side.png', rating: 5},
@@ -32,20 +23,74 @@ const menu = [
     {name: 'Yum! Burgers - Big Yum Burger', description: 'Big Yum Burger', price: 2.99, image: 'https://jollibeeusa.com/wp-content/uploads/2019/03/bigyum.png', rating: 4},
 ];
 
-const AppNavigator = createStackNavigator({
-    Home: { screen: MenuList },
-    Review: { screen: MenuReview },
-    Cart: {screen: OrderCart}},{
-    navigationOptions: {
-        headerStyle: {
-            backgroundColor: '#0066CC',
-            color: '#FFF'
-        },
-        headerTintColor: '#FFF',
-            headerTitleStyle: {
-            color: '#FFF'
-        }
+export default class MenuList extends Component<props> {
+
+    static navigationOptions = {
+        header: null
+    };
+
+    state = {
+        search: null
+    };
+
+    render() {
+        // console.log('DEBUG', this.state.search);
+        return (
+            <View style={{
+                flex: 1,
+                backgroundColor: '#FFFFFF'
+            }}>
+
+                <View style={{
+                    marginTop: 40,
+                    alignItems: 'center'
+                }}>
+                    <Image source={JollibeeImage} />
+                </View>
+
+                <Header/>
+
+                <TextInput
+                    style = {styles.input}
+                    placeholder = "Search"
+                    onChangeText = { text => {
+                        this.setState({search: text})
+                    }}
+                    value = {this.state.search}
+                />
+                <FlatList
+                    data={
+                        menu.filter(item => {
+                            console.log('data() item name : ', item.name);
+                            return !this.state.search ||
+                                item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1
+                        })
+                    }
+                    renderItem={({ item, index }) =>
+                        <MenuRow
+                            item={item}
+                            index={index}
+                            navigation={this.props.navigation}
+                        />
+                    }
+                    keyExtractor={ item => item.name}
+                    initialNumToRender={16}
+                    ListHeaderComponent={<View style={{height: 30}} />}
+                />
+            </View>
+        );
     }
+}
+
+const styles = StyleSheet.create({
+    input: {
+        padding: 10,
+        paddingHorizontal: 20,
+        fontSize: 16,
+        color: '#4444',
+        borderBottomWidth: 1,
+        borderColor: '#ddd',
+        backgroundColor: '#F5F5F5'
+    },
 });
 
-export default createAppContainer(AppNavigator);
