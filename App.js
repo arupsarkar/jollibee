@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, TextInput, FlatList, Image} from 'react-native';
-import Header from 'components/Header';
-import MenuRow from 'components/MenuRow';
-import JollibeeImage from 'images/Jollibee.png';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import {
     createStackNavigator,
-    createAppContainer
+    createAppContainer,
+    createBottomTabNavigator
 } from 'react-navigation';
 
 import MenuList from 'components/MenuList'
 import MenuReview from 'components/MenuReview'
 import OrderCart from 'components/OrderCart'
+import About from 'components/About'
+import AddReview from 'components/AddReview'
 
 const menu = [
     {name: 'Chickenjoy - 10-pc & 6-pc Chickenjoy Bucket', description: '10-pc & 6-pc Chickenjoy Bucket', price: 14.44, image: 'https://jollibeeusa.com/wp-content/uploads/2019/03/lgchickjoy.png', rating: 4},
@@ -35,17 +35,52 @@ const menu = [
 const AppNavigator = createStackNavigator({
     Home: { screen: MenuList },
     Review: { screen: MenuReview },
-    Cart: {screen: OrderCart}},{
-    navigationOptions: {
+    Cart: {screen: OrderCart}},
+    {
+        defaultNavigationOptions: {
         headerStyle: {
-            backgroundColor: '#0066CC',
+            backgroundColor: '#ff0000',
             color: '#FFF'
         },
         headerTintColor: '#FFF',
             headerTitleStyle: {
             color: '#FFF'
-        }
+        },
+        tintColor: 'red'
     }
 });
 
-export default createAppContainer(AppNavigator);
+const Tabs = createBottomTabNavigator({
+    Menu: { screen: AppNavigator },
+    About: { screen: About}},
+    {
+        defaultNavigationOptions: ({navigation}) => {
+            return {
+                tabBarIcon: ({ tintColor }) => {
+                    const route = navigation.state.routeName
+                    const name = {
+                        'Menu': 'list',
+                        'About': 'info-circle'
+                    }[route]
+                    return <Icon name={name} color={tintColor} size={22} />
+                },
+                tabBarOptions: {
+                    activeBackgroundColor: '#E6F0FA'
+                }
+            }
+        }
+});
+
+//export default createStackNavigator({
+const appNavigation = createStackNavigator({
+        Tabs: { screen: Tabs },
+        AddReview: { screen: AddReview }
+}   , {
+        mode: 'modal',
+        headerMode: 'none',
+        navigationOptions: {
+        gesturesEnabled: false
+    }
+});
+
+export default createAppContainer(appNavigation);

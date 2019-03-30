@@ -17,7 +17,9 @@ class MenuRow extends Component {
 
     infoPressed = () => {
         // this.setState({ showInfo: !this.state.showInfo });
-        this.props.navigation.navigate('Review');
+        this.props.navigation.navigate('Review',{
+            item: this.props.item
+        });
     };
 
     orderPressed = () => {
@@ -73,13 +75,6 @@ class MenuRow extends Component {
                     </View>
 
                 </View>
-
-                {/*{*/}
-                {/*    this.state.showInfo &&*/}
-                {/*    <View style={styles.info}>*/}
-                {/*        <Text>Menu Review</Text>*/}
-                {/*    </View>*/}
-                {/*}*/}
 
                 <View style={styles.edges}>
                     <TouchableHighlight
