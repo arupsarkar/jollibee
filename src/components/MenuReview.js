@@ -13,15 +13,28 @@ import Stars from 'components/Stars'
 
 export default class MenuReview extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuItem: ''
+        } ;
+
+    }
+
     static navigationOptions = {
         title: 'Review Details'
     };
+
     addReview = () => {
-        this.props.navigation.navigate('AddReview')
+        this.props.navigation.navigate('AddReview',{
+            item: this.state.menuItem
+        });
     };
 
     render() {
+
         const item = this.props.navigation.getParam('item');
+        console.log(item.id, item.name);
 
 
         return (
@@ -36,8 +49,6 @@ export default class MenuReview extends Component {
                         style={styles.image}
                         resizeMode="contain"
                     />
-
-
 
                     <View style={styles.info}>
                         <Text style={styles.name}>{item.name}</Text>
