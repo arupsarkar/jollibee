@@ -3,51 +3,37 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableHighlight,
-    Image
+    Image, TouchableHighlight
 } from 'react-native'
-import { withNavigation } from 'react-navigation';
-import Stars from 'components/Stars'
-import {connect} from "react-redux";
 
 
-class MenuRow extends Component {
-    state = {
-        showInfo: false
-    };
+class ShoppingCartRow extends Component {
 
 
-    infoPressed = () => {
-        // this.setState({ showInfo: !this.state.showInfo });
-        this.props.navigation.navigate('Review',{
-            item: this.props.item
-        });
-    };
-
-    orderPressed = () => {
-        this.props.navigation.navigate('Cart');
-    };
-
-    render() {
+    render(){
 
         const {
             item,
             index
         } = this.props;
 
-        console.log('MenuRow() name ', item.name);
-        console.log('MenuRow() description ', item.description);
-
+        console.log('ShoppingCartRow', item);
         return (
+
+
+
+
             <View key={item.name}
                   style={{ backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7' }}>
 
-                <View style={styles.row}>
-                    <View style={styles.stars}>
-                        <Stars rating={item.rating} />
-                    </View>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'stretch',
+                    paddingTop: 20
+                }}>
 
-                    <View style={styles.nameAddress}>
                         <Text>{item.name}</Text>
                         <Text style={styles.addressText}>{item.description}</Text>
                         <Text style={styles.price}>${item.price}</Text>
@@ -64,43 +50,20 @@ class MenuRow extends Component {
                                 resizeMode="contain"
                             />
                         </View>
-                    </View>
 
-                    <View style={styles.edges}>
-                        <TouchableHighlight
-                            onPress={this.infoPressed}
-                            style={styles.button}
-                            underlayColor='#5398DC'>
-                            <Text style={styles.buttonText}>Review</Text>
-                        </TouchableHighlight>
-                    </View>
 
-                </View>
 
-                <View style={styles.edges}>
-                    <TouchableHighlight
-                        onPress={ () => {this.props.addItemToCart(item)}}
-                        style={styles.button}
-                        underlayColor='#5398DC'>
-                        <Text style={styles.buttonText}>Order</Text>
-                    </TouchableHighlight>
                 </View>
 
             </View>
 
-        )
+        );
     }
-};
+}
 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addItemToCart: (item) => dispatch({ type: 'ADD_TO_CART', payload: item })
-    }
-};
 
-export default connect(null, mapDispatchToProps)(withNavigation(MenuRow));
-
+export default ShoppingCartRow
 
 const styles = StyleSheet.create({
     row: {
@@ -155,5 +118,3 @@ const styles = StyleSheet.create({
         minWidth: 50
     },
 });
-
-// export default withNavigation(MenuRow);

@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     info: {
         flex: 1,
         flexWrap: 'wrap',
-        marginTop: 20
+        marginTop: 20,
     },
     name: {
         fontSize: 24

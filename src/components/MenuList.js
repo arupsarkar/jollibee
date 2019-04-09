@@ -4,8 +4,12 @@ import axios from 'axios'
 import Header from 'components/Header';
 import MenuRow from 'components/MenuRow';
 import JollibeeImage from 'images/Jollibee.png';
+import ShoppingCartIcon from 'components/ShoppingCartIcon'
+import Products from 'components/Products'
+import {connect} from "react-redux";
+import {withNavigation} from "react-navigation";
 
-export default class MenuList extends Component<props> {
+export default class MenuList extends Component {
 
     static navigationOptions = {
         header: null
@@ -47,7 +51,10 @@ export default class MenuList extends Component<props> {
                     }}
                     value = {this.state.search}
                 />
+                <ShoppingCartIcon/>
+
                 <FlatList
+
                     data={
                         this.state.menu.filter(item => {
                             console.log('data() item name : ', item.name);
@@ -57,6 +64,7 @@ export default class MenuList extends Component<props> {
                     }
                     renderItem={({ item, index }) =>
                         <MenuRow
+                            onRowPress={this.props.addItemToCart}
                             item={item}
                             index={index}
                             navigation={this.props.navigation}
