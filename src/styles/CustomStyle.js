@@ -13,7 +13,7 @@ export default StyleSheet.create({
         paddingTop: 30,
         fontSize: 26,
         textAlign: 'center',
-        color: '#FF0000',
+        color: '#0d39ff',
         fontWeight: '200'
     }
 })

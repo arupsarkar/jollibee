@@ -7,17 +7,19 @@ import {
     FlatList, TouchableHighlight
 } from 'react-native'
 import { connect } from 'react-redux'
-
+import { withNavigation } from 'react-navigation';
 import ShoppingCartRow from "./ShoppingCartRow";
-import Header from "./Header.ios";
-import ShoppingCartIcon from "./ShoppingCartIcon";
-import TotalPrice from "./TotalPrice";
+
 import Checkout from "./Checkout";
 
 class ShoppingCart extends Component {
 
+    static navigationOptions = {
+        header: "Cart Items"
+    };
+
     render() {
-        console.log('Cart Items: ', this.props.CartItems);
+        console.log('Cart Items: ', this.props.CartItems.length);
         return (
 
 
@@ -52,8 +54,11 @@ class ShoppingCart extends Component {
                               initialNumToRender={16}
                               ListHeaderComponent={<View style={{height: 30}} />}
                     />
+                    :
+                        <View>
+                            <Text>No items in your cart</Text>
+                        </View>
 
-                    : <Text>No items in your cart</Text>
                 }
 
                 <View style={{flex: 1, align: 'bottom', justifyContent: 'flex-end',}}>
@@ -77,7 +82,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(ShoppingCart));
 
 
 const styles = StyleSheet.create({

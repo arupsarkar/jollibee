@@ -3,9 +3,8 @@ import {View, StyleSheet, TextInput, FlatList, Image} from 'react-native';
 import axios from 'axios'
 import Header from 'components/Header';
 import MenuRow from 'components/MenuRow';
-import JollibeeImage from 'images/Jollibee.png';
+import nto from 'images/nto.png';
 import ShoppingCartIcon from 'components/ShoppingCartIcon'
-import Products from 'components/Products'
 import {connect} from "react-redux";
 import {withNavigation} from "react-navigation";
 
@@ -38,7 +37,7 @@ export default class MenuList extends Component {
                     marginTop: 40,
                     alignItems: 'center'
                 }}>
-                    <Image source={JollibeeImage} />
+                    <Image source={nto} />
                 </View>
 
                 <Header/>

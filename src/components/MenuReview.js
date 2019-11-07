@@ -53,9 +53,9 @@ export default class MenuReview extends Component {
                     <View style={styles.info}>
                         <Text style={styles.name}>{item.name}</Text>
                         <Text style={styles.address}>{item.description}</Text>
-                        <View style={styles.stars}>
-                            <Stars rating={item.rating} />
-                        </View>
+                        {/*<View style={styles.stars}>*/}
+                        {/*    <Stars rating={item.rating} />*/}
+                        {/*</View>*/}
                         <View>
                             <TouchableOpacity
                                 style={styles.button}

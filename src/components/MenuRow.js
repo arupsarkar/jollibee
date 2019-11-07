@@ -26,6 +26,7 @@ class MenuRow extends Component {
 
     orderPressed = () => {
         this.props.navigation.navigate('Cart');
+
     };
 
     render() {
@@ -43,9 +44,10 @@ class MenuRow extends Component {
                   style={{ backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7' }}>
 
                 <View style={styles.row}>
-                    <View style={styles.stars}>
-                        <Stars rating={item.rating} />
-                    </View>
+
+                    {/*<View style={styles.stars}>*/}
+                    {/*    <Stars rating={item.rating} />*/}
+                    {/*</View>*/}
 
                     <View style={styles.nameAddress}>
                         <Text>{item.name}</Text>

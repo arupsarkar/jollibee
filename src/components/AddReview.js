@@ -77,7 +77,7 @@ export default class AddReview extends Component {
                         style={styles.button}
                         onPress={this.close}
                     >
-                        <Icon name="close" size={30} color="#ff0000" />
+                        <Icon name="close" size={30} color="#0d39ff"/>
                     </TouchableOpacity>
 
                     <Text style={styles.addReview}>Add Review</Text>
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     submitButton: {
         paddingVertical: 10,
         paddingHorizontal: 20,
-        backgroundColor: '#ff0000',
+        backgroundColor: '#578eff',
         borderRadius: 4,
         marginVertical: 10,
         marginHorizontal: 20

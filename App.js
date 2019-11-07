@@ -24,19 +24,19 @@ const AppNavigator = createStackNavigator({
     {
         defaultNavigationOptions: {
         headerStyle: {
-            backgroundColor: '#ff0000',
+            backgroundColor: '#0d39ff',
             color: '#FFF'
         },
         headerTintColor: '#FFF',
             headerTitleStyle: {
             color: '#FFF'
         },
-        tintColor: 'red'
+        tintColor: 'blue'
     }
 });
 
 const Tabs = createBottomTabNavigator({
-    Menu: { screen: AppNavigator },
+    Product: { screen: AppNavigator },
     Cart: { screen: ShoppingCart},
     About: { screen: About}
     },
@@ -46,7 +46,7 @@ const Tabs = createBottomTabNavigator({
                 tabBarIcon: ({ tintColor }) => {
                     const route = navigation.state.routeName;
                     const name = {
-                        'Menu': 'list',
+                        'Product': 'list',
                         'Cart' : 'shopping-cart',
                         'About': 'info-circle'
 

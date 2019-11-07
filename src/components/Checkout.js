@@ -3,13 +3,14 @@ import {
     View,
     Text,
     StyleSheet,
-    Platform, TouchableHighlight
+    TouchableHighlight
 } from 'react-native'
 
-import { withNavigation } from 'react-navigation'
+
 import { connect } from 'react-redux'
 
 const Checkout = (props) => (
+
     <View style={[{ padding: 5 }]}>
 
         <View style={{
@@ -27,15 +28,14 @@ const Checkout = (props) => (
 
             <View>
                 <TouchableHighlight
-                    onPress={ () => {this.props.addItemToCart(item)}}
+                    onPress = {() => {
+                        props.cartCheckout(props.CartItems);
+                    }}
                     style={styles.button}
                     underlayColor='#5398DC'>
-                    <Text style={{color: 'white',fontWeight: 'bold'}}>Checkout</Text>
+                    <Text style={{color: 'white',fontWeight: 'bold'}}>{props.CartItems.length} - Checkout</Text>
                 </TouchableHighlight>
             </View>
-            {/*<Text style={{*/}
-            {/*    color: 'white', */}
-            {/*    fontWeight: 'bold' }}>Checkout</Text>*/}
         </View>
     </View>
 );
@@ -46,7 +46,13 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(withNavigation(Checkout));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        cartCheckout: (item) => dispatch({ type: 'CHECKOUT', payload: item })
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
 
 const styles = StyleSheet.create({
     container: {

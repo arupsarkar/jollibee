@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start --port 9988",
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "native-base": "^2.12.1",
+    "axios": "^0.18.1",
+    "native-base": "^2.13.8",
     "react": "16.8.3",
-    "react-native": "0.59.1",
+    "react-native": "0.59.10",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-vector-icons": "^6.4.2",

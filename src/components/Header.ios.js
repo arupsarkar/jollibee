@@ -5,7 +5,7 @@ import CustomStyle from 'styles/CustomStyle';
 export default class Header extends Component {
     render() {
         return(
-            <Text style={CustomStyle.iOSHeader}>Welcome to Jollibee - iOS</Text>
+            <Text style={CustomStyle.iOSHeader}>Northern Trail Outfitters</Text>
         )
     }
 }
